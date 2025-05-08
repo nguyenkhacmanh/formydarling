@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Love - A Gift for My Love</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(to bottom, #e0f7fa, #b2ebf2, #80deea);
+            color: #1a237e;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #0d47a1;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #1565c0;
+        }
+
+        .scroll-btn {
+            background: rgba(255, 255, 255, 0.8);
+            color: #0d47a1;
+            border: 2px solid #0d47a1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll-btn:hover {
+            background: #0d47a1;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0d47a1;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #b3e5fc;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-placeholder {
+            width: 90%;
+            height: 200px;
+            background-color: #e1f5fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d47a1;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-caption {
+            margin-top: 15px;
+            font-style: italic;
+            text-align: center;
+            color: #1565c0;
+        }
+
+        .message-board {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid #b3e5fc;
+        }
+
+        .message-text {
+            white-space: pre-line;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #1a237e;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid #b3e5fc;
+            border-radius: 10px;
+            resize: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #0d47a1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #1565c0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Flower animations */
+        .flowers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            animation-name: float;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 10s;
+        }
+
+        .flower1 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='15' fill='%23ff9e80'/%3E%3Cpath d='M50,20 Q65,35 80,20 Q65,50 80,80 Q50,65 20,80 Q35,50 20,20 Q50,35 50,20' fill='%23ff9e80' opacity='0.7'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23ffcc80'/%3E%3C/svg%3E");
+        }
+
+        .flower2 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='50' cy='65' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='35' cy='50' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='65' cy='50' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23ffcc80'/%3E%3C/svg%3E");
+        }
+
+        .flower3 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,20 Q65,35 50,50 Q65,65 50,80 Q35,65 50,50 Q35,35 50,20' fill='%2381c784'/%3E%3Cpath d='M20,50 Q35,65 50,50 Q65,65 80,50 Q65,35 50,50 Q35,35 20,50' fill='%2381c784'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23fff59d'/%3E%3C/svg%3E");
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-40px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotate(-5deg);
+            }
+        }
+
+        /* Bubbles animation */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: rise linear infinite;
+            bottom: -100px;
+        }
+
+        @keyframes rise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.1);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .message-board {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Heart cursor */
+        .heart-cursor {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,80 C90,40 80,0 50,20 C20,0 10,40 50,80' fill='%23e91e63' opacity='0.8'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 9999;
+            transition: transform 0.1s;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            margin-top: 40px;
+            border-top: 1px solid #b3e5fc;
+        }
+
+        .hearts {
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,80 C90,40 80,0 50,20 C20,0 10,40 50,80' fill='%23e91e63' opacity='0.6'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            animation: float-up linear forwards;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0.8;
+                transform: scale(0) translateY(0);
+            }
+            70% {
+                opacity: 0.8;
+                transform: scale(1) translateY(-100px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.2) translateY(-150px);
+            }
+        }
+
+        .upload-btn {
+            display: inline-block;
+            background: #0d47a1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .upload-btn:hover {
+            background: #1565c0;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%2380deea' fill-opacity='0.5' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-cursor"></div>
+    <div class="hearts"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="flowers">
+            <!-- Flowers will be added by JavaScript -->
+        </div>
+        <div class="wave"></div>
+        <h1>For My Beloved</h1>
+        <p class="subtitle">A special gift from the bottom of my heart</p>
+        <button class="scroll-btn" onclick="scrollToSection('gallery')">Begin Our Journey</button>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Precious Moments</h2>
+            <div class="gallery">
+                <!-- Photo frames will be added here -->
+                <div class="photo-frame">
+                    <div class="photo-placeholder" id="photo1">
+                        <span>Click to add photo</span>
+                    </div>
+                    <p class="photo-caption">Our first date</p>
+                    <input type="file" id="upload1" accept="image/*" onchange="previewImage(this, 'photo1')">
+                    <label for="upload1" class="upload-btn">Choose Photo</label>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo-placeholder" id="photo2">
+                        <span>Click to add photo</span>
+                    </div>
+                    <p class="photo-caption">When we laughed the hardest</p>
+                    <input type="file" id="upload2" accept="image/*" onchange="previewImage(this, 'photo2')">
+                    <label for="upload2" class="upload-btn">Choose Photo</label>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo-placeholder" id="photo3">
+                        <span>Click to add photo</span>
+                    </div>
+                    <p class="photo-caption">Our favorite place</p>
+                    <input type="file" id="upload3" accept="image/*" onchange="previewImage(this, 'photo3')">
+                    <label for="upload3" class="upload-btn">Choose Photo</label>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo-placeholder" id="photo4">
+                        <span>Click to add photo</span>
+                    </div>
+                    <p class="photo-caption">The most beautiful you</p>
+                    <input type="file" id="upload4" accept="image/*" onchange="previewImage(this, 'photo4')">
+                    <label for="upload4" class="upload-btn">Choose Photo</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="section" id="message">
+        <div class="container">
+            <h2 class="section-title">My Message To You</h2>
+            <div class="message-board">
+                <div id="message-display" class="message-text">
+                    Your love letter will appear here...
+                </div>
+                <textarea id="message-input" placeholder="Write your love letter here..."></textarea>
+                <div>
+                    <button onclick="saveMessage()">Save Message</button>
+                    <button onclick="clearMessage()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 - Created with love just for you</p>
+    </footer>
+
+    <script>
+        // Create flowers
+        function createFlowers() {
+            const flowers = document.querySelector('.flowers');
+            const flowerTypes = ['flower1', 'flower2', 'flower3'];
+            
+            for (let i = 0; i < 15; i++) {
+                const flower = document.createElement('div');
+                flower.classList.add('flower');
+                flower.classList.add(flowerTypes[Math.floor(Math.random() * flowerTypes.length)]);
+                
+                // Random position
+                flower.style.left = `${Math.random() * 100}%`;
+                flower.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = 30 + Math.random() * 40;
+                flower.style.width = `${size}px`;
+                flower.style.height = `${size}px`;
+                
+                // Random animation duration
+                const duration = 8 + Math.random() * 7;
+                flower.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                flower.style.animationDelay = `${Math.random() * 5}s`;
+                
+                flowers.appendChild(flower);
+            }
+        }
+
+        // Create bubbles
+        function createBubbles() {
+            const body = document.querySelector('body');
+            
+            for (let i = 0; i < 50; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                
+                // Random size
+                const size = 5 + Math.random() * 30;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Random position
+                bubble.style.left = `${Math.random() * 100}%`;
+                
+                // Random rise speed
+                const duration = 5 + Math.random() * 15;
+                bubble.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                
+                body.appendChild(bubble);
+            }
+        }
+
+        // Heart cursor
+        function initHeartCursor() {
+            const cursor = document.querySelector('.heart-cursor');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1)`;
+            });
+            
+            document.addEventListener('mousedown', () => {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1.5)`;
+                createHeart(e.clientX, e.clientY);
+            });
+            
+            document.addEventListener('mouseup', () => {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1)`;
+            });
+        }
+
+        // Create heart at click
+        function createHeart(x, y) {
+            const hearts = document.querySelector('.hearts');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            
+            // Random size
+            const size = 20 + Math.random() * 20;
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            
+            // Animation duration
+            heart.style.animationDuration = `${1 + Math.random()}s`;
+            
+            hearts.appendChild(heart);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                hearts.removeChild(heart);
+            }, 2000);
+        }
+
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Message functions
+        function saveMessage() {
+            const input = document.getElementById('message-input');
+            const display = document.getElementById('message-display');
+            
+            if (input.value.trim() !== '') {
+                // Save to local storage
+                localStorage.setItem('loveMessage', input.value);
+                
+                // Update display
+                display.innerText = input.value;
+            }
+        }
+
+        function clearMessage() {
+            document.getElementById('message-input').value = '';
+            document.getElementById('message-display').innerText = 'Your love letter will appear here...';
+            localStorage.removeItem('loveMessage');
+        }
+
+        // Load saved message if exists
+        function loadMessage() {
+            const savedMessage = localStorage.getItem('loveMessage');
+            if (savedMessage) {
+                document.getElementById('message-input').value = savedMessage;
+                document.getElementById('message-display').innerText = savedMessage;
+            }
+        }
+
+        // Image preview function
+        function previewImage(input, photoId) {
+            const placeholder = document.getElementById(photoId);
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    placeholder.innerHTML = '';
+                    placeholder.style.backgroundImage = `url('${e.target.result}')`;
+                    placeholder.style.backgroundSize = 'cover';
+                    placeholder.style.backgroundPosition = 'center';
+                    
+                    // Save to local storage
+                    localStorage.setItem(photoId, e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Load saved images
+        function loadImages() {
+            for (let i = 1; i <= 4; i++) {
+                const photoId = `photo${i}`;
+                const savedImage = localStorage.getItem(photoId);
+                
+                if (savedImage) {
+                    const placeholder = document.getElementById(photoId);
+                    placeholder.innerHTML = '';
+                    placeholder.style.backgroundImage = `url('${savedImage}')`;
+                    placeholder.style.backgroundSize = 'cover';
+                    placeholder.style.backgroundPosition = 'center';
+                }
+            }
+        }
+
+        // Create heart burst effect on page load
+        function heartBurst() {
+            const hearts = document.querySelector('.hearts');
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    
+                    // Position in center
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    
+                    // Random size
+                    const size = 20 + Math.random() * 20;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    
+                    // Random direction
+                    heart.style.transform = `translateX(${-50 + Math.random() * 100}px) translateY(${-50 + Math.random() * 100}px)`;
+                    
+                    // Animation duration
+                    heart.style.animationDuration = `${1 + Math.random()}s`;
+                    
+                    hearts.appendChild(heart);
+                    
+                    // Remove after animation completes
+                    setTimeout(() => {
+                        hearts.removeChild(heart);
+                    }, 2000);
+                }, i * 100);
+            }
+        }
+
+        // Initialize everything when page loads
+        window.onload = function() {
+            createFlowers();
+            createBubbles();
+            initHeartCursor();
+            loadMessage();
+            loadImages();
+            
+            // Heart burst effect after a delay
+            setTimeout(heartBurst, 1000);
+            
+            // Make document body clickable for hearts
+            document.body.addEventListener('click', (e) => {
+                createHeart(e.clientX, e.clientY);
+            });
+        };
+
+        // Handle clicks on document to create hearts
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'TEXTAREA') {
+                createHeart(e.clientX, e.clientY);
+            }
+        });
+    </script>
+</body>
+</html>
