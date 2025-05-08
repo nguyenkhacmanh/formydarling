@@ -113,17 +113,12 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .photo-placeholder {
+        .photo {
             width: 90%;
             height: 200px;
-            background-color: #e1f5fe;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0d47a1;
+            background-size: cover;
+            background-position: center;
             border-radius: 5px;
-            position: relative;
-            overflow: hidden;
         }
 
         .photo-caption {
@@ -149,6 +144,16 @@
             line-height: 1.6;
             color: #1a237e;
             font-family: 'Cormorant Garamond', serif;
+        }
+
+        .feedback-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid #b3e5fc;
         }
 
         textarea {
@@ -272,7 +277,7 @@
             .gallery {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
-            .message-board {
+            .message-board, .feedback-form {
                 padding: 20px;
             }
         }
@@ -349,25 +354,6 @@
             }
         }
 
-        .upload-btn {
-            display: inline-block;
-            background: #0d47a1;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .upload-btn:hover {
-            background: #1565c0;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
         .wave {
             position: absolute;
             bottom: 0;
@@ -378,6 +364,42 @@
             background-size: cover;
             background-repeat: no-repeat;
             opacity: 0.8;
+        }
+
+        .thank-you {
+            display: none;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0d47a1;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #f44336;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(13, 71, 161, 0.3);
+            border-radius: 50%;
+            border-top-color: #0d47a1;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -401,38 +423,22 @@
         <div class="container">
             <h2 class="section-title">Our Precious Moments</h2>
             <div class="gallery">
-                <!-- Photo frames will be added here -->
+                <!-- Photo frames with pre-set images -->
                 <div class="photo-frame">
-                    <div class="photo-placeholder" id="photo1">
-                        <span>Click to add photo</span>
-                    </div>
-                    <p class="photo-caption">Our first date</p>
-                    <input type="file" id="upload1" accept="image/*" onchange="previewImage(this, 'photo1')">
-                    <label for="upload1" class="upload-btn">Choose Photo</label>
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Our first date at the beach</p>
                 </div>
                 <div class="photo-frame">
-                    <div class="photo-placeholder" id="photo2">
-                        <span>Click to add photo</span>
-                    </div>
-                    <p class="photo-caption">When we laughed the hardest</p>
-                    <input type="file" id="upload2" accept="image/*" onchange="previewImage(this, 'photo2')">
-                    <label for="upload2" class="upload-btn">Choose Photo</label>
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">When we laughed under the stars</p>
                 </div>
                 <div class="photo-frame">
-                    <div class="photo-placeholder" id="photo3">
-                        <span>Click to add photo</span>
-                    </div>
-                    <p class="photo-caption">Our favorite place</p>
-                    <input type="file" id="upload3" accept="image/*" onchange="previewImage(this, 'photo3')">
-                    <label for="upload3" class="upload-btn">Choose Photo</label>
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Our favorite sunset spot</p>
                 </div>
                 <div class="photo-frame">
-                    <div class="photo-placeholder" id="photo4">
-                        <span>Click to add photo</span>
-                    </div>
-                    <p class="photo-caption">The most beautiful you</p>
-                    <input type="file" id="upload4" accept="image/*" onchange="previewImage(this, 'photo4')">
-                    <label for="upload4" class="upload-btn">Choose Photo</label>
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Your beautiful smile brightens my day</p>
                 </div>
             </div>
         </div>
@@ -443,14 +449,40 @@
         <div class="container">
             <h2 class="section-title">My Message To You</h2>
             <div class="message-board">
-                <div id="message-display" class="message-text">
-                    Your love letter will appear here...
+                <div class="message-text">
+                    My dearest love,
+
+                    From the moment our paths crossed, you've been the ocean to my shore - constant, beautiful, and endlessly fascinating. Every wave of your smile washes away my worries, and the depth of your eyes holds mysteries I could explore forever.
+
+                    Like the tide that faithfully returns to kiss the sand, my thoughts always find their way back to you. You are my anchor when life gets stormy, and my horizon when I need direction.
+
+                    I've created this little corner of the digital world to celebrate what we have - a love as vast and boundless as the sea itself. Each photo marks a moment where my heart swelled with joy simply because you were there.
+
+                    Thank you for swimming through life with me, for diving into adventures together, and for being the beautiful current that guides me home.
+
+                    With all my heart and soul,
+                    [Your Name]
                 </div>
-                <textarea id="message-input" placeholder="Write your love letter here..."></textarea>
-                <div>
-                    <button onclick="saveMessage()">Save Message</button>
-                    <button onclick="clearMessage()">Clear</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="section" id="feedback">
+        <div class="container">
+            <h2 class="section-title">Your Thoughts</h2>
+            <div class="feedback-form">
+                <p class="message-text" style="margin-bottom: 20px;">How does this make you feel? I'd love to hear your thoughts. Send me a message that will come directly to me:</p>
+                <textarea id="feedback-input" placeholder="Write your response here..."></textarea>
+                <p class="error-message" id="error-message">Something went wrong. Please try again later.</p>
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Sending your message...</p>
                 </div>
+                <div class="thank-you" id="thank-you">
+                    Thank you for your message! It means the world to me.
+                </div>
+                <button onclick="sendFeedback()">Send Your Thoughts</button>
             </div>
         </div>
     </section>
@@ -525,12 +557,12 @@
                 cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1)`;
             });
             
-            document.addEventListener('mousedown', () => {
+            document.addEventListener('mousedown', (e) => {
                 cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1.5)`;
                 createHeart(e.clientX, e.clientY);
             });
             
-            document.addEventListener('mouseup', () => {
+            document.addEventListener('mouseup', (e) => {
                 cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1)`;
             });
         }
@@ -566,70 +598,61 @@
             });
         }
 
-        // Message functions
-        function saveMessage() {
-            const input = document.getElementById('message-input');
-            const display = document.getElementById('message-display');
+        // Send feedback function
+        function sendFeedback() {
+            const feedbackText = document.getElementById('feedback-input').value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const loadingElement = document.getElementById('loading');
+            const thankYouElement = document.getElementById('thank-you');
             
-            if (input.value.trim() !== '') {
-                // Save to local storage
-                localStorage.setItem('loveMessage', input.value);
-                
-                // Update display
-                display.innerText = input.value;
+            if (feedbackText === '') {
+                alert('Please write a message before sending.');
+                return;
             }
-        }
-
-        function clearMessage() {
-            document.getElementById('message-input').value = '';
-            document.getElementById('message-display').innerText = 'Your love letter will appear here...';
-            localStorage.removeItem('loveMessage');
-        }
-
-        // Load saved message if exists
-        function loadMessage() {
-            const savedMessage = localStorage.getItem('loveMessage');
-            if (savedMessage) {
-                document.getElementById('message-input').value = savedMessage;
-                document.getElementById('message-display').innerText = savedMessage;
-            }
-        }
-
-        // Image preview function
-        function previewImage(input, photoId) {
-            const placeholder = document.getElementById(photoId);
             
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
+            // Show loading
+            loadingElement.style.display = 'block';
+            errorMessage.style.display = 'none';
+            
+            // Here you would normally send data to a server
+            // For demonstration, we'll use a timeout to simulate network request
+            
+            // URL encoded parameters (you would replace with your own email or form endpoint)
+            const formData = new FormData();
+            formData.append('message', feedbackText);
+            
+            // Replace with your actual form/email endpoint
+            // This is where you'll need to add your own service for receiving messages
+            const endpoint = "https://formspree.io/YOUR_EMAIL_HERE"; // Replace with your Formspree email or other form service
+            
+            // For demo purposes, we'll simulate a successful submission
+            setTimeout(() => {
+                loadingElement.style.display = 'none';
+                thankYouElement.style.display = 'block';
+                document.getElementById('feedback-input').value = '';
                 
-                reader.onload = function(e) {
-                    placeholder.innerHTML = '';
-                    placeholder.style.backgroundImage = `url('${e.target.result}')`;
-                    placeholder.style.backgroundSize = 'cover';
-                    placeholder.style.backgroundPosition = 'center';
-                    
-                    // Save to local storage
-                    localStorage.setItem(photoId, e.target.result);
-                }
+                // Note: In a real application, you would use fetch or XMLHttpRequest here
+                // fetch(endpoint, {
+                //     method: 'POST',
+                //     body: formData,
+                //     headers: {
+                //         'Accept': 'application/json'
+                //     }
+                // }).then(response => {
+                //     if (response.ok) {
+                //         loadingElement.style.display = 'none';
+                //         thankYouElement.style.display = 'block';
+                //         document.getElementById('feedback-input').value = '';
+                //     } else {
+                //         loadingElement.style.display = 'none';
+                //         errorMessage.style.display = 'block';
+                //     }
+                // }).catch(error => {
+                //     loadingElement.style.display = 'none';
+                //     errorMessage.style.display = 'block';
+                // });
                 
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        // Load saved images
-        function loadImages() {
-            for (let i = 1; i <= 4; i++) {
-                const photoId = `photo${i}`;
-                const savedImage = localStorage.getItem(photoId);
-                
-                if (savedImage) {
-                    const placeholder = document.getElementById(photoId);
-                    placeholder.innerHTML = '';
-                    placeholder.style.backgroundImage = `url('${savedImage}')`;
-                    placeholder.style.backgroundSize = 'cover';
-                    placeholder.style.backgroundPosition = 'center';
-                }
-            }
+            }, 2000);
         }
 
         // Create heart burst effect on page load
@@ -671,8 +694,6 @@
             createFlowers();
             createBubbles();
             initHeartCursor();
-            loadMessage();
-            loadImages();
             
             // Heart burst effect after a delay
             setTimeout(heartBurst, 1000);
