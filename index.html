@@ -623,7 +623,7 @@
             
             // Replace with your actual form/email endpoint
             // This is where you'll need to add your own service for receiving messages
-            const endpoint = "https://formspree.io/YOUR_EMAIL_HERE"; // Replace with your Formspree email or other form service
+            const endpoint = "https://formspree.io/kmanh2005@gmail.com"; // Replace with your Formspree email or other form service
             
             // For demo purposes, we'll simulate a successful submission
             setTimeout(() => {
@@ -632,25 +632,25 @@
                 document.getElementById('feedback-input').value = '';
                 
                 // Note: In a real application, you would use fetch or XMLHttpRequest here
-                // fetch(endpoint, {
-                //     method: 'POST',
-                //     body: formData,
-                //     headers: {
-                //         'Accept': 'application/json'
-                //     }
-                // }).then(response => {
-                //     if (response.ok) {
-                //         loadingElement.style.display = 'none';
-                //         thankYouElement.style.display = 'block';
-                //         document.getElementById('feedback-input').value = '';
-                //     } else {
-                //         loadingElement.style.display = 'none';
-                //         errorMessage.style.display = 'block';
-                //     }
-                // }).catch(error => {
-                //     loadingElement.style.display = 'none';
-                //     errorMessage.style.display = 'block';
-                // });
+                fetch(endpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        loadingElement.style.display = 'none';
+                        thankYouElement.style.display = 'block';
+                        document.getElementById('feedback-input').value = '';
+                    } else {
+                        loadingElement.style.display = 'none';
+                        errorMessage.style.display = 'block';
+                    }
+                }).catch(error => {
+                    loadingElement.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                });
                 
             }, 2000);
         }
