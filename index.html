@@ -472,17 +472,26 @@
         <div class="container">
             <h2 class="section-title">Your Thoughts</h2>
             <div class="feedback-form">
-                <p class="message-text" style="margin-bottom: 20px;">How does this make you feel? I'd love to hear your thoughts. Send me a message that will come directly to me:</p>
-                <textarea id="feedback-input" placeholder="Write your response here..."></textarea>
-                <p class="error-message" id="error-message">Something went wrong. Please try again later.</p>
-                <div class="loading" id="loading">
-                    <div class="loading-spinner"></div>
-                    <p>Sending your message...</p>
                 </div>
-                <div class="thank-you" id="thank-you">
-                    Thank you for your message! It means the world to me.
-                </div>
-                <button onclick="sendFeedback()">Send Your Thoughts</button>
+                <!-- Important: action attribute must point to your Formspree endpoint -->
+                <form id="feedback-form" action="https://formspree.io/f/mbloagwo" method="POST">
+                    <p class="message-text" style="margin-bottom: 20px;">How does this make you feel? I'd love to hear your thoughts. Send me a message that will come directly to me:</p>
+                    <textarea id="feedback-input" name="message" placeholder="Write your response here..."></textarea>
+                    <input type="hidden" name="_subject" value="New message from Ocean Love website">
+                    
+                    <!-- Optional: Add a honeypot field to prevent spam -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <p class="error-message" id="error-message">Something went wrong. Please try again later.</p>
+                    <div class="loading" id="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Sending your message...</p>
+                    </div>
+                    <div class="thank-you" id="thank-you">
+                        Thank you for your message! It means the world to me.
+                    </div>
+                    <button type="submit" id="submit-button">Send Your Thoughts</button>
+                </form>
             </div>
         </div>
     </section>
