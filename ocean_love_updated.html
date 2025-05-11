@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Love - A Gift for My Love</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            /* Enhanced gradient background */
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2, #80deea, #4dd0e1, #26c6da);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #1a237e;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced gradient animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #0d47a1;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #1565c0;
+            z-index: 1;
+        }
+
+        .scroll-btn {
+            background: rgba(255, 255, 255, 0.8);
+            color: #0d47a1;
+            border: 2px solid #0d47a1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .scroll-btn:hover {
+            background: #0d47a1;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0d47a1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #b3e5fc;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo {
+            width: 90%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+            transition: transform 0.5s;
+        }
+
+        .photo-frame:hover .photo {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            margin-top: 15px;
+            font-style: italic;
+            text-align: center;
+            color: #1565c0;
+        }
+
+        .message-board {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid #b3e5fc;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-text {
+            white-space: pre-line;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #1a237e;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .feedback-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 2px solid #b3e5fc;
+            position: relative;
+            z-index: 1;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid #b3e5fc;
+            border-radius: 10px;
+            resize: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #0d47a1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #1565c0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Improved flower animations */
+        .flowers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            animation-name: float;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 10s;
+            z-index: 0;
+        }
+
+        .flower1 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='15' fill='%23ff9e80'/%3E%3Cpath d='M50,20 Q65,35 80,20 Q65,50 80,80 Q50,65 20,80 Q35,50 20,20 Q50,35 50,20' fill='%23ff9e80' opacity='0.7'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23ffcc80'/%3E%3C/svg%3E");
+        }
+
+        .flower2 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='50' cy='65' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='35' cy='50' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='65' cy='50' r='20' fill='%23ce93d8'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23ffcc80'/%3E%3C/svg%3E");
+        }
+
+        .flower3 {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,20 Q65,35 50,50 Q65,65 50,80 Q35,65 50,50 Q35,35 50,20' fill='%2381c784'/%3E%3Cpath d='M20,50 Q35,65 50,50 Q65,65 80,50 Q65,35 50,50 Q35,35 20,50' fill='%2381c784'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23fff59d'/%3E%3C/svg%3E");
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-40px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotate(-5deg);
+            }
+        }
+
+        /* Enhanced bubbles animation */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6));
+            animation: rise linear infinite;
+            bottom: -100px;
+            z-index: 0;
+        }
+
+        @keyframes rise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.1);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .message-board, .feedback-form {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            margin-top: 40px;
+            border-top: 1px solid #b3e5fc;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hearts {
+            position: fixed;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,80 C90,40 80,0 50,20 C20,0 10,40 50,80' fill='%23e91e63' opacity='0.6'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            animation: float-up linear forwards;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0.8;
+                transform: scale(0) translateY(0);
+            }
+            70% {
+                opacity: 0.8;
+                transform: scale(1) translateY(-100px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.2) translateY(-150px);
+            }
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%2380deea' fill-opacity='0.5' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+        }
+
+        .thank-you {
+            display: none;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0d47a1;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #f44336;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(13, 71, 161, 0.3);
+            border-radius: 50%;
+            border-top-color: #0d47a1;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="flowers">
+            <!-- Flowers will be added by JavaScript -->
+        </div>
+        <div class="wave"></div>
+        <h1>For My Beloved</h1>
+        <p class="subtitle">A special gift from the bottom of my heart</p>
+        <button class="scroll-btn" onclick="scrollToSection('gallery')">Begin Our Journey</button>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" id="gallery">
+        <div class="flowers">
+            <!-- Flowers will be added by JavaScript -->
+        </div>
+        <div class="container">
+            <h2 class="section-title">Our Precious Moments</h2>
+            <div class="gallery">
+                <!-- Photo frames with pre-set images -->
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Our first date at the beach</p>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">When we laughed under the stars</p>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Our favorite sunset spot</p>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Your beautiful smile brightens my day</p>
+                </div>
+                <!-- Additional photo frames -->
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Our picnic in the park</p>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Dancing in the rain</p>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Our special anniversary dinner</p>
+                </div>
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">Watching the waves together</p>
+                </div>
+                <!-- New added photo frame -->
+                <div class="photo-frame">
+                    <div class="photo" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <p class="photo-caption">The day we built sandcastles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="section" id="message">
+        <div class="flowers">
+            <!-- Flowers will be added by JavaScript -->
+        </div>
+        <div class="container">
+            <h2 class="section-title">My Message To You</h2>
+            <div class="message-board">
+                <div class="message-text">
+                    My dearest love,
+
+                    From the moment our paths crossed, you've been the ocean to my shore - constant, beautiful, and endlessly fascinating. Every wave of your smile washes away my worries, and the depth of your eyes holds mysteries I could explore forever.
+
+                    Like the tide that faithfully returns to kiss the sand, my thoughts always find their way back to you. You are my anchor when life gets stormy, and my horizon when I need direction.
+
+                    I've created this little corner of the digital world to celebrate what we have - a love as vast and boundless as the sea itself. Each photo marks a moment where my heart swelled with joy simply because you were there.
+
+                    Thank you for swimming through life with me, for diving into adventures together, and for being the beautiful current that guides me home.
+
+                    With all my heart and soul,
+                    [Your Name]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="section" id="feedback">
+        <div class="flowers">
+            <!-- Flowers will be added by JavaScript -->
+        </div>
+        <div class="container">
+            <h2 class="section-title">Your Thoughts</h2>
+            <div class="feedback-form">
+                <!-- Important: action attribute must point to your Formspree endpoint -->
+                <form id="feedback-form" action="https://formspree.io/f/mbloagwo" method="POST">
+                    <p class="message-text" style="margin-bottom: 20px;">How does this make you feel? I'd love to hear your thoughts. Send me a message that will come directly to me:</p>
+                    <textarea id="feedback-input" name="message" placeholder="Write your response here..."></textarea>
+                    <input type="hidden" name="_subject" value="New message from Ocean Love website">
+                    
+                    <!-- Optional: Add a honeypot field to prevent spam -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <p class="error-message" id="error-message">Something went wrong. Please try again later.</p>
+                    <div class="loading" id="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Sending your message...</p>
+                    </div>
+                    <div class="thank-you" id="thank-you">
+                        Thank you for your message! It means the world to me.
+                    </div>
+                    <button type="submit" id="submit-button">Send Your Thoughts</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 - Created with love just for you</p>
+    </footer>
+
+    <script>
+        // Create flowers for all sections
+        function createFlowers() {
+            const flowerContainers = document.querySelectorAll('.flowers');
+            const flowerTypes = ['flower1', 'flower2', 'flower3'];
+            
+            flowerContainers.forEach(flowers => {
+                // Increase number of flowers for better visibility
+                for (let i = 0; i < 30; i++) {
+                    const flower = document.createElement('div');
+                    flower.classList.add('flower');
+                    flower.classList.add(flowerTypes[Math.floor(Math.random() * flowerTypes.length)]);
+                    
+                    // Random position
+                    flower.style.left = `${Math.random() * 100}%`;
+                    flower.style.top = `${Math.random() * 100}%`;
+                    
+                    // Random size
+                    const size = 30 + Math.random() * 40;
+                    flower.style.width = `${size}px`;
+                    flower.style.height = `${size}px`;
+                    
+                    // Random animation duration
+                    const duration = 8 + Math.random() * 7;
+                    flower.style.animationDuration = `${duration}s`;
+                    
+                    // Random delay
+                    flower.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    flowers.appendChild(flower);
+                }
+            });
+        }
+
+        // Create bubbles
+        function createBubbles() {
+            const sections = document.querySelectorAll('.section, .hero');
+            
+            sections.forEach(section => {
+                // Increase number of bubbles
+                for (let i = 0; i < 20; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    
+                    // Random size
+                    const size = 5 + Math.random() * 30;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    
+                    // Random position
+                    bubble.style.left = `${Math.random() * 100}%`;
+                    
+                    // Random rise speed
+                    const duration = 5 + Math.random() * 15;
+                    bubble.style.animationDuration = `${duration}s`;
+                    
+                    // Random delay
+                    bubble.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    section.appendChild(bubble);
+                }
+            });
+        }
+
+        // Create heart at click
+        function createHeart(x, y) {
+            const hearts = document.querySelector('.hearts');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            
+            // Random size
+            const size = 20 + Math.random() * 20;
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            
+            // Animation duration
+            heart.style.animationDuration = `${1 + Math.random()}s`;
+            
+            hearts.appendChild(heart);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                if (hearts.contains(heart)) {
+                    hearts.removeChild(heart);
+                }
+            }, 2000);
+        }
+
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Send feedback function
+        function sendFeedback(e) {
+            e.preventDefault();
+            
+            const feedbackText = document.getElementById('feedback-input').value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const loadingElement = document.getElementById('loading');
+            const thankYouElement = document.getElementById('thank-you');
+            
+            if (feedbackText === '') {
+                alert('Please write a message before sending.');
+                return;
+            }
+            
+            // Show loading
+            loadingElement.style.display = 'block';
+            errorMessage.style.display = 'none';
+            
+            // Formspree requires a specific format for their endpoint
+            const formData = new FormData();
+            formData.append('message', feedbackText);
+            
+            // Replace with your actual Formspree form ID
+            const endpoint = "https://formspree.io/f/mbloagwo";
+            
+            // Send the form data to Formspree
+            fetch(endpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                loadingElement.style.display = 'none';
+                
+                if (response.ok) {
+                    // Success scenario
+                    thankYouElement.style.display = 'block';
+                    document.getElementById('feedback-input').value = '';
+                } else {
+                    // Error scenario
+                    errorMessage.style.display = 'block';
+                    console.error("Formspree submission failed:", response);
+                }
+            })
+            .catch(error => {
+                loadingElement.style.display = 'none';
+                errorMessage.style.display = 'block';
+                console.error("Formspree error:", error);
+            });
+        }
+
+        // Create heart burst effect
+        function heartBurst() {
+            const hearts = document.querySelector('.hearts');
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    
+                    // Position in center
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    
+                    // Random size
+                    const size = 20 + Math.random() * 20;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    
+                    // Random direction
+                    heart.style.transform = `translateX(${-50 + Math.random() * 100}px) translateY(${-50 + Math.random() * 100}px)`;
+                    
+                    // Animation duration
+                    heart.style.animationDuration = `${1 + Math.random()}s`;
+                    
+                    hearts.appendChild(heart);
+                    
+                    // Remove after animation completes
+                    setTimeout(() => {
+                        if (hearts.contains(heart)) {
+                            hearts.removeChild(heart);
+                        }
+                    }, 2000);
+                }, i * 100);
+            }
+        }
+
+        // Initialize everything when page loads
+        window.onload = function() {
+            createFlowers();
+            createBubbles();
+            
+            // Heart burst effect after a delay
+            setTimeout(heartBurst, 1000);
+            
+            // Setup form submission handler
+            document.getElementById('feedback-form').addEventListener('submit', sendFeedback);
+            
+            // Make document body clickable for hearts
+            document.body.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'TEXTAREA') {
+                    createHeart(e.clientX, e.clientY);
+                }
+            });
+        };
+    </script>
