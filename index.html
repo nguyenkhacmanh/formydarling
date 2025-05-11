@@ -598,7 +598,7 @@
             });
         }
 
-        // Send feedback function
+    // Send feedback function
         function sendFeedback() {
             const feedbackText = document.getElementById('feedback-input').value.trim();
             const errorMessage = document.getElementById('error-message');
@@ -614,46 +614,42 @@
             loadingElement.style.display = 'block';
             errorMessage.style.display = 'none';
             
-            // Here you would normally send data to a server
-            // For demonstration, we'll use a timeout to simulate network request
-            
-            // URL encoded parameters (you would replace with your own email or form endpoint)
+            // Formspree requires a specific format for their endpoint
+            // Format should be: https://formspree.io/f/{your-form-id}
+            // If you signed up for Formspree, you should use your form ID instead of email
             const formData = new FormData();
             formData.append('message', feedbackText);
             
-            // Replace with your actual form/email endpoint
-            // This is where you'll need to add your own service for receiving messages
-            const endpoint = "https://formspree.io/kmanh2005@gmail.com"; // Replace with your Formspree email or other form service
+            // Replace with your actual Formspree form ID (from your Formspree dashboard)
+            // The format should be https://formspree.io/f/XXXXXXXX
+            const endpoint = "https://formspree.io/f/mbloagwo"; // Replace "your-form-id" with your actual form ID
             
-            // For demo purposes, we'll simulate a successful submission
-            setTimeout(() => {
+            // Send the form data to Formspree
+            fetch(endpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
                 loadingElement.style.display = 'none';
-                thankYouElement.style.display = 'block';
-                document.getElementById('feedback-input').value = '';
                 
-                // Note: In a real application, you would use fetch or XMLHttpRequest here
-                fetch(endpoint, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }).then(response => {
-                    if (response.ok) {
-                        loadingElement.style.display = 'none';
-                        thankYouElement.style.display = 'block';
-                        document.getElementById('feedback-input').value = '';
-                    } else {
-                        loadingElement.style.display = 'none';
-                        errorMessage.style.display = 'block';
-                    }
-                }).catch(error => {
-                    loadingElement.style.display = 'none';
+                if (response.ok) {
+                    // Success scenario
+                    thankYouElement.style.display = 'block';
+                    document.getElementById('feedback-input').value = '';
+                } else {
+                    // Error scenario
                     errorMessage.style.display = 'block';
-                });
-                
-            }, 2000);
-        }
+                    console.error("Formspree submission failed:", response);
+                }
+            })
+            .catch(error => {
+                loadingElement.style.display = 'none';
+                errorMessage.style.display = 'block';
+                console.error("Formspree error:", error);
+            });
 
         // Create heart burst effect on page load
         function heartBurst() {
